@@ -1,0 +1,12 @@
+import { Router } from "express";
+import userController from "../../controller/user/index.js";
+import userValidator from "../../validator/user/index.js";
+import AuthenticateMiddleware from "../../middleware/authentication.js";
+const userRouter = Router();
+userRouter.get("/user/getall", userController.getall);
+userRouter.get("/user", AuthenticateMiddleware, userController.getone);
+userRouter.get("/profile", AuthenticateMiddleware, userController.getprofile);
+userRouter.put("/user", AuthenticateMiddleware, userController.update);
+userRouter.delete("/user", AuthenticateMiddleware, userController.deleteone);
+userRouter.delete("/user/deleteall", userController.deleteall);
+export default userRouter;

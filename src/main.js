@@ -1,0 +1,11 @@
+import express from "express";
+import allRouter from "./router/index.js";
+import "dotenv/config.js";
+import { connectDb } from "./database/config.js";
+import syncDb from "./database/sync.js";
+const app = express();
+app.listen(3006, console.log("Server has been created"));
+app.use(express.json());
+app.use(allRouter);
+connectDb();
+syncDb().then(console.log("Db has been synced"));
